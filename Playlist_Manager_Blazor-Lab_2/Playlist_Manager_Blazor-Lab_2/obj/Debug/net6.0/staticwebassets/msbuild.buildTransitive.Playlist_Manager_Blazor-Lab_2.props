@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\Playlist_Manager_Blazor-Lab_2.props" />
-</Project>
