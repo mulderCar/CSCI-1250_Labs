@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vm/vczOvdxSFtBpnyF9TggUvYwk92qqd2XnKyTO4dXZVT+WJGFEcjryW4HUSMBAKZp7WDoHAGigCjEl3x6WTMg==",
+  "dgSpecHash": "DnAugvwk+Fo4xT+dHL7RSnRziiUqOLAHuT1fGl/LQ6A9XJREd48OXQAD9N9mnXezyNnnFbAoWnh3Q1PSeOd7eA==",
   "success": true,
-  "projectFilePath": "D:\\CSCI-1260\\Labs\\Playlist_Manager_Blazor-Lab_2\\Playlist_Manager_Blazor-Lab_2\\Playlist_Manager_Blazor-Lab_2.csproj",
+  "projectFilePath": "D:\\CSCI-1260\\C#\\Playlist_Manager_Blazor-Lab_2\\Playlist_Manager_Blazor-Lab_2\\Playlist_Manager_Blazor-Lab_2.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

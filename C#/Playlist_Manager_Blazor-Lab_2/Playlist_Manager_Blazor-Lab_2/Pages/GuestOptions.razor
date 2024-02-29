@@ -2,57 +2,194 @@
 
 Welcome to your new app.
 
-<div style="text-align: center;">
-    <button class="btn btn-primary" @onclick="Button1Click">Button 1</button>
-    <button class="btn btn-primary" @onclick="Button2Click">Button 2</button>
-    <button class="btn btn-primary" @onclick="Button3Click">Button 3</button>
-    <button class="btn btn-primary" @onclick="Button4Click">Button 4</button>
-    <button class="btn btn-primary" @onclick="Button5Click">Button 5</button>
-    <button class="btn btn-primary" @onclick="Button6Click">Button 6</button>
-    <button class="btn btn-primary" @onclick="Button7Click">Button 7</button>
-    <button class="btn btn-primary" @onclick="Button8Click">Button 8</button>
+@if (availableSongs != null)
+{
+    <div>
+        <label for="addSongDropdown">Select Song to Add:</label>
+        <select id="addSongDropdown" @bind="selectedSongToAdd" placeholder="Select a Song">
+            <option value="" disabled selected>Select a Song</option>
+            @foreach (var song in availableSongs)
+            {
+                <option value="@song.Name">@song.Name</option>
+            }
+        </select>
+        <button class="btn btn-primary" @onclick="Button1Click">Add Song</button>
+    </div>
+}
+
+@if (playlist != null)
+{
+    <div>
+        <label for="removeSongDropdown">Select Song to Remove:</label>
+        <select id="removeSongDropdown" @bind="selectedSongToRemove" placeholder="Select a Song">
+            <option value="" disabled selected>Select a Song</option>
+            @foreach (var song in playlist)
+            {
+                <option value="@song.Name">@song.Name</option>
+            }
+        </select>
+        <button class="btn btn-primary" @onclick="Button2Click">Remove Song</button>
+    </div>
+}
+
+
+<div>
+    <button class="btn btn-primary" @onclick="Button3Click">Display Playlist (Toggle)</button>
+    <button class="btn btn-primary" @onclick="Button4Click">Shuffle Playlist</button>
+</div>
+
+<div>
+    @if (displayPlaylist)
+    {
+        @if (playlist != null && playlist.Any())
+        {
+            <h2>Playlist:</h2>
+            <ul>
+                @foreach (var song in playlist)
+                {
+                    <li>
+                        <div>
+                            <img src="@song.ImageUrl" alt="Album Art" style="max-width: 100px; max-height: 100px;" />
+                        </div>
+                        <div>
+                            <strong>Name:</strong> @song.Name<br />
+                            <strong>Artist:</strong> @song.Artist<br />
+                            <strong>Genre:</strong> @song.Genre<br />
+                            <strong>Album:</strong> @song.Album<br />
+                            <strong>Duration:</strong> @FormatDuration(song.Duration)
+                        </div>
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No songs in the playlist.</p>
+        }
+    }
 </div>
 
 @code {
-    private string liveText = "Welcome to your new app.";
+    private List<Song> playlist = new List<Song>();
+    private List<Song> availableSongs = new List<Song>
+    {
+        new Song { Name = "Song 1", Artist = "Artist 1", Genre = "Genre 1", Album = "Album 1", Duration = 180 },
+        new Song { Name = "Song 2", Artist = "Artist 2", Genre = "Genre 2", Album = "Album 2", Duration = 200 },
+        new Song { Name = "Song 3", Artist = "Artist 3", Genre = "Genre 3", Album = "Album 3", Duration = 150 },
+        new Song { Name = "Song 4", Artist = "Artist 4", Genre = "Genre 4", Album = "Album 4", Duration = 220 },
+        new Song { Name = "Song 5", Artist = "Artist 5", Genre = "Genre 5", Album = "Album 5", Duration = 190 }
+    };
+
+    private string newSong;
+    private string newArtist;
+    private string newGenre;
+    private string newAlbum;
+    private int newDuration;
+
+    private string selectedSongToAdd;
+    private string selectedSongToRemove;
+
+    private bool displayPlaylist = false;
+
+    private class Song
+    {
+        public string Name { get; set; }
+        public string Artist { get; set; }
+        public string Genre { get; set; }
+        public string Album { get; set; }
+        public int Duration { get; set; }
+        public string ImageUrl { get; set; }
+    }
+
+    private string FormatDuration(int durationInSeconds)
+    {
+        int minutes = durationInSeconds / 60;
+        int seconds = durationInSeconds % 60;
+        return $"{minutes:D2}:{seconds:D2}";
+    }
+
+    private void CreateSong()
+    {
+        if (!string.IsNullOrEmpty(newSong))
+        {
+            if (availableSongs == null)
+            {
+                availableSongs = new List<Song>();
+            }
+
+            var newSongObject = new Song
+                {
+                    Name = newSong,
+                    Artist = newArtist,
+                    Genre = newGenre,
+                    Album = newAlbum,
+                    Duration = newDuration
+                };
+
+            availableSongs.Add(newSongObject);
+            Console.WriteLine($"{newSong} created");
+
+            // Clear the form fields after creating the song
+            newSong = "";
+            newArtist = "";
+            newGenre = "";
+            newAlbum = "";
+            newDuration = 0;
+        }
+    }
 
     private void Button1Click()
     {
-        Console.WriteLine("Button 1 clicked");
+        if (availableSongs != null && !string.IsNullOrEmpty(selectedSongToAdd))
+        {
+            var songToAdd = availableSongs.FirstOrDefault(s => s.Name == selectedSongToAdd);
+            if (songToAdd != null)
+            {
+                playlist.Add(songToAdd);
+                Console.WriteLine($"{songToAdd.Name} added to the playlist");
+            }
+        }
     }
 
     private void Button2Click()
     {
-        Console.WriteLine("Button 2 clicked");
+        if (playlist != null && !string.IsNullOrEmpty(selectedSongToRemove))
+        {
+            var songToRemove = playlist.FirstOrDefault(s => s.Name == selectedSongToRemove);
+            if (songToRemove != null)
+            {
+                playlist.Remove(songToRemove);
+                Console.WriteLine($"{songToRemove.Name} removed from the playlist");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Please select a song to remove.");
+        }
     }
 
     private void Button3Click()
     {
-        Console.WriteLine("Button 3 clicked");
+        displayPlaylist = true;
     }
 
     private void Button4Click()
     {
-        Console.WriteLine("Button 4 clicked");
-    }
+        if (playlist != null)
+        {
+            // Shuffle the playlist using Fisher-Yates algorithm
+            Random random = new Random();
+            int n = playlist.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = random.Next(n + 1);
+                var value = playlist[k];
+                playlist[k] = playlist[n];
+                playlist[n] = value;
+            }
 
-    private void Button5Click()
-    {
-        Console.WriteLine("Button 5 clicked");
-    }
-
-    private void Button6Click()
-    {
-        Console.WriteLine("Button 6 clicked");
-    }
-
-    private void Button7Click()
-    {
-        Console.WriteLine("Button 7 clicked");
-    }
-
-    private void Button8Click()
-    {
-        Console.WriteLine("Button 8 clicked");
+            Console.WriteLine("Playlist shuffled");
+        }
     }
 }

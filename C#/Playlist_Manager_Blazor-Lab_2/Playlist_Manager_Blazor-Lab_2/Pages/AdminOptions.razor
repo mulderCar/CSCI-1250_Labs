@@ -1,18 +1,238 @@
 ﻿@page "/AdminOptions"
 
-<PageTitle>Counter</PageTitle>
+@using Playlist_Manager_Blazor_Lab_2
 
-<h1>Counter</h1>
 
-<p role="status">Current count: @currentCount</p>
+<PageTitle>Admin Options</PageTitle>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<h1>Admin Options</h1>
+
+<div>
+    <form>
+        <div class="form-group">
+            <label for="newSongInput">Enter New Song:</label>
+            <input id="newSongInput" class="form-control" @bind="newSong" placeholder="Song Name" />
+        </div>
+
+        <div class="form-group">
+            <label for="newArtistInput">Enter Artist:</label>
+            <input id="newArtistInput" class="form-control" @bind="newArtist" placeholder="Artist Name" />
+        </div>
+
+        <div class="form-group">
+            <label for="newGenreInput">Select Genre:</label>
+            <select id="newGenreInput" class="form-control" @bind="newGenre">
+                <option value="" disabled selected>Select Genre</option>
+                @foreach (MusicGenre genre in Enum.GetValues(typeof(MusicGenre)))
+                {
+                    <option value="@genre">@genre.ToString()</option>
+                }
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            <label for="newAlbumInput">Enter Album:</label>
+            <input id="newAlbumInput" class="form-control" @bind="newAlbum" placeholder="Album Name" />
+        </div>
+
+        <div class="form-group">
+            <label for="newDurationInput">Enter Duration (seconds):</label>
+            <input id="newDurationInput" class="form-control" type="number" @bind="newDuration" placeholder="Duration" />
+        </div>
+
+        <button type="button" class="btn btn-primary" @onclick="CreateSong">Create Song</button>
+    </form>
+</div>
+
+@if (availableSongs != null)
+{
+    <div>
+        <label for="addSongDropdown">Select Song to Add:</label>
+        <select id="addSongDropdown" @bind="selectedSongToAdd" placeholder="Select a Song">
+            <option value="" disabled selected>Select a Song</option>
+            @foreach (var song in availableSongs)
+            {
+                <option value="@song.Name">@song.Name</option>
+            }
+        </select>
+        <button class="btn btn-primary" @onclick="Button1Click">Add Song</button>
+    </div>
+}
+
+@if (playlist != null)
+{
+    <div>
+        <label for="removeSongDropdown">Select Song to Remove:</label>
+        <select id="removeSongDropdown" @bind="selectedSongToRemove" placeholder="Select a Song">
+            <option value="" disabled selected>Select a Song</option>
+            @foreach (var song in playlist)
+            {
+                <option value="@song.Name">@song.Name</option>
+            }
+        </select>
+        <button class="btn btn-primary" @onclick="Button2Click">Remove Song</button>
+    </div>
+}
+
+
+<div>
+    <button class="btn btn-primary" @onclick="Button3Click">Display Playlist (Toggle)</button>
+    <button class="btn btn-primary" @onclick="Button4Click">Shuffle Playlist</button>
+</div>
+
+<div>
+    @if (displayPlaylist)
+    {
+        @if (playlist != null && playlist.Any())
+        {
+            <h2>Playlist:</h2>
+            <ul>
+                @foreach (var song in playlist)
+                {
+                    <li>
+                        <div>
+                            <img src="@song.ImageUrl" alt="Album Art" style="max-width: 100px; max-height: 100px;" />
+                        </div>
+                        <div>
+                            <strong>Name:</strong> @song.Name<br />
+                            <strong>Artist:</strong> @song.Artist<br />
+                            <strong>Genre:</strong> @song.Genre<br />
+                            <strong>Album:</strong> @song.Album<br />
+                            <strong>Duration:</strong> @FormatDuration(song.Duration)
+                        </div>
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No songs in the playlist.</p>
+        }
+    }
+</div>
 
 @code {
-    private int currentCount = 0;
-
-    private void IncrementCount()
+    private List<Song> playlist = new List<Song>();
+    private List<Song> availableSongs = new List<Song>
     {
-        currentCount++;
+        new Song { Name = "Song 1", Artist = "Artist 1", Genre = "Genre 1", Album = "Album 1", Duration = 180 },
+        new Song { Name = "Song 2", Artist = "Artist 2", Genre = "Genre 2", Album = "Album 2", Duration = 200 },
+        new Song { Name = "Song 3", Artist = "Artist 3", Genre = "Genre 3", Album = "Album 3", Duration = 150 },
+        new Song { Name = "Song 4", Artist = "Artist 4", Genre = "Genre 4", Album = "Album 4", Duration = 220 },
+        new Song { Name = "Song 5", Artist = "Artist 5", Genre = "Genre 5", Album = "Album 5", Duration = 190 }
+    };
+
+    private string newSong;
+    private string newArtist;
+    private string newGenre;
+    private string newAlbum;
+    private int newDuration;
+
+    private string selectedSongToAdd;
+    private string selectedSongToRemove;
+
+    private bool displayPlaylist = false;
+
+    private class Song
+    {
+        public string Name { get; set; }
+        public string Artist { get; set; }
+        public string Genre { get; set; }
+        public string Album { get; set; }
+        public int Duration { get; set; }
+        public string ImageUrl { get; set; }
+    }
+
+    private string FormatDuration(int durationInSeconds)
+    {
+        int minutes = durationInSeconds / 60;
+        int seconds = durationInSeconds % 60;
+        return $"{minutes:D2}:{seconds:D2}";
+    }
+
+    private void CreateSong()
+    {
+        if (!string.IsNullOrEmpty(newSong))
+        {
+            if (availableSongs == null)
+            {
+                availableSongs = new List<Song>();
+            }
+
+            var newSongObject = new Song
+                {
+                    Name = newSong,
+                    Artist = newArtist,
+                    Genre = newGenre,
+                    Album = newAlbum,
+                    Duration = newDuration
+                };
+
+            availableSongs.Add(newSongObject);
+            Console.WriteLine($"{newSong} created");
+
+            // Clear the form fields after creating the song
+            newSong = "";
+            newArtist = "";
+            newGenre = "";
+            newAlbum = "";
+            newDuration = 0;
+        }
+    }
+
+    private void Button1Click()
+    {
+        if (availableSongs != null && !string.IsNullOrEmpty(selectedSongToAdd))
+        {
+            var songToAdd = availableSongs.FirstOrDefault(s => s.Name == selectedSongToAdd);
+            if (songToAdd != null)
+            {
+                playlist.Add(songToAdd);
+                Console.WriteLine($"{songToAdd.Name} added to the playlist");
+            }
+        }
+    }
+
+    private void Button2Click()
+    {
+        if (playlist != null && !string.IsNullOrEmpty(selectedSongToRemove))
+        {
+            var songToRemove = playlist.FirstOrDefault(s => s.Name == selectedSongToRemove);
+            if (songToRemove != null)
+            {
+                playlist.Remove(songToRemove);
+                Console.WriteLine($"{songToRemove.Name} removed from the playlist");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Please select a song to remove.");
+        }
+    }
+
+    private void Button3Click()
+    {
+        displayPlaylist = true;
+    }
+
+    private void Button4Click()
+    {
+        if (playlist != null)
+        {
+            // Shuffle the playlist using Fisher-Yates algorithm
+            Random random = new Random();
+            int n = playlist.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = random.Next(n + 1);
+                var value = playlist[k];
+                playlist[k] = playlist[n];
+                playlist[n] = value;
+            }
+
+            Console.WriteLine("Playlist shuffled");
+        }
     }
 }

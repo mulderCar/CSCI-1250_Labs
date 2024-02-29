@@ -9,55 +9,51 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Playlist_Manager_Blazor_Lab_2
 build_property.RootNamespace = Playlist_Manager_Blazor_Lab_2
-build_property.ProjectDir = D:\CSCI-1260\Labs\Playlist_Manager_Blazor-Lab_2\Playlist_Manager_Blazor-Lab_2\
+build_property.ProjectDir = D:\CSCI-1260\C#\Playlist_Manager_Blazor-Lab_2\Playlist_Manager_Blazor-Lab_2\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\CSCI-1260\Labs\Playlist_Manager_Blazor-Lab_2\Playlist_Manager_Blazor-Lab_2
+build_property.MSBuildProjectDirectory = D:\CSCI-1260\C#\Playlist_Manager_Blazor-Lab_2\Playlist_Manager_Blazor-Lab_2
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/CSCI-1260/Labs/Playlist_Manager_Blazor-Lab_2/Playlist_Manager_Blazor-Lab_2/App.razor]
+[D:/CSCI-1260/C\#/Playlist_Manager_Blazor-Lab_2/Playlist_Manager_Blazor-Lab_2/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CSCI-1260/Labs/Playlist_Manager_Blazor-Lab_2/Playlist_Manager_Blazor-Lab_2/Pages/Counter.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
+[D:/CSCI-1260/C\#/Playlist_Manager_Blazor-Lab_2/Playlist_Manager_Blazor-Lab_2/Pages/AdminOptions.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5PcHRpb25zLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CSCI-1260/Labs/Playlist_Manager_Blazor-Lab_2/Playlist_Manager_Blazor-Lab_2/Pages/FetchData.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmV0Y2hEYXRhLnJhem9y
+[D:/CSCI-1260/C\#/Playlist_Manager_Blazor-Lab_2/Playlist_Manager_Blazor-Lab_2/Pages/GuestOptions.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3Vlc3RPcHRpb25zLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CSCI-1260/Labs/Playlist_Manager_Blazor-Lab_2/Playlist_Manager_Blazor-Lab_2/Pages/Index.razor]
+[D:/CSCI-1260/C\#/Playlist_Manager_Blazor-Lab_2/Playlist_Manager_Blazor-Lab_2/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CSCI-1260/Labs/Playlist_Manager_Blazor-Lab_2/Playlist_Manager_Blazor-Lab_2/Shared/SurveyPrompt.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/CSCI-1260/Labs/Playlist_Manager_Blazor-Lab_2/Playlist_Manager_Blazor-Lab_2/_Imports.razor]
+[D:/CSCI-1260/C\#/Playlist_Manager_Blazor-Lab_2/Playlist_Manager_Blazor-Lab_2/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CSCI-1260/Labs/Playlist_Manager_Blazor-Lab_2/Playlist_Manager_Blazor-Lab_2/Shared/MainLayout.razor]
+[D:/CSCI-1260/C\#/Playlist_Manager_Blazor-Lab_2/Playlist_Manager_Blazor-Lab_2/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-9b40cuj8e4
 
-[D:/CSCI-1260/Labs/Playlist_Manager_Blazor-Lab_2/Playlist_Manager_Blazor-Lab_2/Shared/NavMenu.razor]
+[D:/CSCI-1260/C\#/Playlist_Manager_Blazor-Lab_2/Playlist_Manager_Blazor-Lab_2/Shared/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-1owx900799
 
-[D:/CSCI-1260/Labs/Playlist_Manager_Blazor-Lab_2/Playlist_Manager_Blazor-Lab_2/Pages/Error.cshtml]
+[D:/CSCI-1260/C\#/Playlist_Manager_Blazor-Lab_2/Playlist_Manager_Blazor-Lab_2/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CSCI-1260/Labs/Playlist_Manager_Blazor-Lab_2/Playlist_Manager_Blazor-Lab_2/Pages/_Host.cshtml]
+[D:/CSCI-1260/C\#/Playlist_Manager_Blazor-Lab_2/Playlist_Manager_Blazor-Lab_2/Pages/_Host.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CSCI-1260/Labs/Playlist_Manager_Blazor-Lab_2/Playlist_Manager_Blazor-Lab_2/Pages/_Layout.cshtml]
+[D:/CSCI-1260/C\#/Playlist_Manager_Blazor-Lab_2/Playlist_Manager_Blazor-Lab_2/Pages/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
