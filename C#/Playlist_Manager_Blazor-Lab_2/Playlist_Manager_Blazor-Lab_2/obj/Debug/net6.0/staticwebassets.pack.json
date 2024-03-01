@@ -57,6 +57,26 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\CSCI-1260\\C#\\Playlist_Manager_Blazor-Lab_2\\Playlist_Manager_Blazor-Lab_2\\wwwroot\\images\\house-21178_1280.jpg",
+      "PackagePath": "staticwebassets\\images\\house-21178_1280.jpg"
+    },
+    {
+      "Id": "D:\\CSCI-1260\\C#\\Playlist_Manager_Blazor-Lab_2\\Playlist_Manager_Blazor-Lab_2\\wwwroot\\images\\houses-4862719_1280.jpg",
+      "PackagePath": "staticwebassets\\images\\houses-4862719_1280.jpg"
+    },
+    {
+      "Id": "D:\\CSCI-1260\\C#\\Playlist_Manager_Blazor-Lab_2\\Playlist_Manager_Blazor-Lab_2\\wwwroot\\images\\market-2494520_1280.jpg",
+      "PackagePath": "staticwebassets\\images\\market-2494520_1280.jpg"
+    },
+    {
+      "Id": "D:\\CSCI-1260\\C#\\Playlist_Manager_Blazor-Lab_2\\Playlist_Manager_Blazor-Lab_2\\wwwroot\\images\\nick-dunlap-h65WkTvyWJY-unsplash.jpg",
+      "PackagePath": "staticwebassets\\images\\nick-dunlap-h65WkTvyWJY-unsplash.jpg"
+    },
+    {
+      "Id": "D:\\CSCI-1260\\C#\\Playlist_Manager_Blazor-Lab_2\\Playlist_Manager_Blazor-Lab_2\\wwwroot\\images\\shoes-3685_640.jpg",
+      "PackagePath": "staticwebassets\\images\\shoes-3685_640.jpg"
+    },
+    {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.Playlist_Manager_Blazor-Lab_2.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

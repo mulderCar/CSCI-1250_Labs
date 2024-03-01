@@ -32,7 +32,6 @@ Welcome to your new app.
     </div>
 }
 
-
 <div>
     <button class="btn btn-primary" @onclick="Button3Click">Display Playlist (Toggle)</button>
     <button class="btn btn-primary" @onclick="Button4Click">Shuffle Playlist</button>
@@ -49,7 +48,7 @@ Welcome to your new app.
                 {
                     <li>
                         <div>
-                            <img src="@song.ImageUrl" alt="Album Art" style="max-width: 100px; max-height: 100px;" />
+                            <img src="@song.ImageUrl" alt="Album Art" style="max-width: 300px; max-height: 300px;" />
                         </div>
                         <div>
                             <strong>Name:</strong> @song.Name<br />
@@ -71,14 +70,32 @@ Welcome to your new app.
 
 @code {
     private List<Song> playlist = new List<Song>();
-    private List<Song> availableSongs = new List<Song>
+    private List<Song> availableSongs;
+
+    protected override void OnInitialized()
     {
-        new Song { Name = "Song 1", Artist = "Artist 1", Genre = "Genre 1", Album = "Album 1", Duration = 180 },
-        new Song { Name = "Song 2", Artist = "Artist 2", Genre = "Genre 2", Album = "Album 2", Duration = 200 },
-        new Song { Name = "Song 3", Artist = "Artist 3", Genre = "Genre 3", Album = "Album 3", Duration = 150 },
-        new Song { Name = "Song 4", Artist = "Artist 4", Genre = "Genre 4", Album = "Album 4", Duration = 220 },
-        new Song { Name = "Song 5", Artist = "Artist 5", Genre = "Genre 5", Album = "Album 5", Duration = 190 }
-    };
+        availableSongs = new List<Song>
+        {
+            new Song { Name = "Harvest Moon Serenade", Artist = "Rural Melodies", Genre = "Agronejo", Album = "Fields of Gold", Duration = 210, ImageUrl = GetRandomImageUrl() },
+            new Song { Name = "Rock Symphony", Artist = "Guitar Legends", Genre = "AlbumRock", Album = "Epic Anthems", Duration = 180, ImageUrl = GetRandomImageUrl() },
+            new Song { Name = "Quantum Reverie", Artist = "Digital Dreamers", Genre = "AltZ", Album = "Virtual Visions", Duration = 200, ImageUrl = GetRandomImageUrl() },
+            new Song { Name = "Metallic Fury", Artist = "Thunderous Titans", Genre = "AlternativeMetal", Album = "Metallic Storm", Duration = 220, ImageUrl = GetRandomImageUrl() },
+            new Song { Name = "Ethereal Echoes", Artist = "Celestial Sounds", Genre = "AlternativeRock", Album = "Cosmic Echo", Duration = 190, ImageUrl = GetRandomImageUrl() },
+            new Song { Name = "Sunset Samba", Artist = "Samba Stars", Genre = "Arrocha", Album = "Tropical Twilight", Duration = 150, ImageUrl = GetRandomImageUrl() },
+            new Song { Name = "Artistic Aura", Artist = "Canvas Creators", Genre = "ArtPop", Album = "Abstract Harmony", Duration = 170, ImageUrl = GetRandomImageUrl() },
+            new Song { Name = "Urban Odyssey", Artist = "City Groovers", Genre = "ATLHipHop", Album = "Concrete Jungle", Duration = 200, ImageUrl = GetRandomImageUrl() },
+            new Song { Name = "Afrobeat Vibes", Artist = "Rhythmic Roots", Genre = "Afrobeats", Album = "African Rhythms", Duration = 180, ImageUrl = GetRandomImageUrl() },
+            new Song { Name = "Dreamy Whispers", Artist = "Sleepy Serenades", Genre = "BedroomPop", Album = "Whispers of Night", Duration = 160, ImageUrl = GetRandomImageUrl() },
+            new Song { Name = "Banda Bliss", Artist = "Mexican Melodies", Genre = "Banda", Album = "Fiesta Fuego", Duration = 190, ImageUrl = GetRandomImageUrl() },
+            new Song { Name = "Maple Beats", Artist = "Northern Rhymes", Genre = "CanadianHipHop", Album = "True North", Duration = 200, ImageUrl = GetRandomImageUrl() }
+        };
+    }
+
+    private string GetRandomImageUrl()
+    {
+        var randomIndex = new Random().Next(imageFilenames.Count);
+        return GetImageUrl(imageFilenames.ElementAtOrDefault(randomIndex));
+    }
 
     private string newSong;
     private string newArtist;
@@ -108,6 +125,21 @@ Welcome to your new app.
         return $"{minutes:D2}:{seconds:D2}";
     }
 
+    private List<string> imageFilenames = new List<string>
+    {
+        "house-21178_1280.jpg",
+        "houses-4862719_1280.jpg",
+        "market-2494520_1280.jpg",
+        "nick-dunlap-h65WkTvyWJY-unsplash.jpg",
+        "shoes-3685_640.jpg"
+    };
+
+    // Method to generate image URLs based on filenames
+    private string GetImageUrl(string filename)
+    {
+        return string.IsNullOrEmpty(filename) ? "" : $"images/{filename}";
+    }
+
     private void CreateSong()
     {
         if (!string.IsNullOrEmpty(newSong))
@@ -123,7 +155,8 @@ Welcome to your new app.
                     Artist = newArtist,
                     Genre = newGenre,
                     Album = newAlbum,
-                    Duration = newDuration
+                    Duration = newDuration,
+                    ImageUrl = GetImageUrl(imageFilenames.ElementAtOrDefault(availableSongs.Count))
                 };
 
             availableSongs.Add(newSongObject);
